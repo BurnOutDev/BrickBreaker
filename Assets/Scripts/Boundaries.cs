@@ -5,6 +5,9 @@ using UnityEngine;
 public class Boundaries : MonoBehaviour
 {
     public GameObject leftWall, rightWall, topWall, bottomWall;
+
+    public GameObject lCorner, rCorner;
+
     float distanceToCamera;
     Vector3 screenBoundaries;
     Vector3 screenPoint;
@@ -52,6 +55,13 @@ public class Boundaries : MonoBehaviour
         Vector3 bottomPoint = new Vector3(screenPoint.x, screenPoint.y - Mathf.Abs(frustrumHeight) / 2, 0);
         bottomWall.transform.position = bottomPoint;
         bottomWall.transform.localScale = new Vector3(Mathf.Abs(screenBoundaries.x), 1, 1);
+
+        #endregion
+
+        #region Right Corner
+
+        rCorner.transform.position = new Vector3(rightPoint.x, topPoint.y, 0);
+        lCorner.transform.position = new Vector3(leftPoint.x, topPoint.y, 0);
 
         #endregion
     }
