@@ -48,6 +48,7 @@ public class SCR_LevelEditor : Editor
             if (GUILayout.Button("Apply", EditorStyles.miniButton))
             {
                 //Create new cell grid
+                CreateGridCells(newGridSize);
             }
             GUI.enabled = true;
         }
@@ -65,8 +66,33 @@ public class SCR_LevelEditor : Editor
             rect = GUILayoutUtility.GetLastRect();
         }
 
-        //Display grid
+        ////Display grid
 
         level.ApplyModifiedProperties();
+
+        DrawDefaultInspector();
+    }
+
+    void CreateGridCells(Vector2Int newSize)
+    {
+        rows.ClearArray();
+
+        for (int yIndex = 0; yIndex < newSize.y; yIndex++)
+        {
+            rows.InsertArrayElementAtIndex(yIndex);
+            SerializedProperty col = GetRowAt(yIndex);
+            col.arraySize = 0;
+
+            for (int xIndex = 0; xIndex < newSize.x; xIndex++)
+            {
+                col.InsertArrayElementAtIndex(xIndex);
+            }
+        }
+        gridSize.vector2IntValue = newGridSize;
+    }
+
+    SerializedProperty GetRowAt(int index)
+    {
+        return rows.GetArrayElementAtIndex(index).FindPropertyRelative(nameof(LevelSetup.columns));
     }
 }
