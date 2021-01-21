@@ -32,7 +32,12 @@ public class Ball : MonoBehaviour
         if (!ballStarted)
         {
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(initialForce, initialForce, 0));
+
+            //Calculate X Force
+            float xDistance = Camera.main.transform.position.x - transform.position.x;
+            Debug.Log(xDistance);
+
+            rb.AddForce(new Vector3(xDistance * 75, initialForce, 0));
             ballStarted = true;
 
             transform.SetParent(transform.parent.parent);
