@@ -24,7 +24,7 @@ public class Paddle : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
 
-        Resize(newSize);
+        ResetPaddle();
     }
 
     void FixedUpdate()
@@ -76,5 +76,11 @@ public class Paddle : MonoBehaviour
         Vector3 colScale = initScale;
         colScale.x += 0.6f * 2;
         col.size = colScale;
+    }
+
+    public void ResetPaddle()
+    {
+        transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y, transform.position.z);
+        Resize(newSize);
     }
 }

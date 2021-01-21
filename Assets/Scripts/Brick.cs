@@ -19,6 +19,7 @@ public class Brick : MonoBehaviour
         if (health <= 0)
         {
             GameManager.instance.RemoveBrick(gameObject);
+            ScoreManager.instance.AddScore(score);
             Destroy(gameObject);
         }
     }

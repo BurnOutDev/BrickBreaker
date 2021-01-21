@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject ballPrefab;
     List<GameObject> balls = new List<GameObject>();
     List<GameObject> bricks = new List<GameObject>();
+
+    public Text livesText;
 
     public int lives;
 
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
     void ResetGame()
     {
         lives = 3;
+        UpdateUI();
     }
 
     #region Ball
@@ -81,11 +85,15 @@ public class GameManager : MonoBehaviour
     void RemoveLife()
     {
         lives--;
+        UpdateUI();
 
         if (lives == 0)
             Debug.Log("You Lost!");
         else
+        {
             CreateBall();
+            Paddle.instance.ResetPaddle();
+        }
     }
 
     public void LostBall(GameObject ball)
@@ -97,6 +105,11 @@ public class GameManager : MonoBehaviour
         {
             RemoveLife();
         }
+    }
+
+    public void UpdateUI()
+    {
+        livesText.text = $"Lives: {lives}";
     }
 
     #endregion
