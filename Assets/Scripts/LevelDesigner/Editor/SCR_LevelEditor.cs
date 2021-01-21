@@ -66,11 +66,12 @@ public class SCR_LevelEditor : Editor
             rect = GUILayoutUtility.GetLastRect();
         }
 
-        ////Display grid
+        //Display grid
+        DisplayGrid(rect);
 
         level.ApplyModifiedProperties();
 
-        DrawDefaultInspector();
+        //DrawDefaultInspector();
     }
 
     void CreateGridCells(Vector2Int newSize)
@@ -89,6 +90,29 @@ public class SCR_LevelEditor : Editor
             }
         }
         gridSize.vector2IntValue = newGridSize;
+    }
+
+    void DisplayGrid(Rect start)
+    {
+        Rect cellPos = start;
+        cellPos.y += 10; //Spacing
+        cellPos.size = cellSize;
+
+        float startX = cellPos.x;
+        for (int yIndex = 0; yIndex < gridSize.vector2IntValue.y; yIndex++)
+        {
+            SerializedProperty col = GetRowAt(yIndex);
+            cellPos.x = startX;
+
+            for (int xIndex = 0; xIndex < gridSize.vector2IntValue.x; xIndex++)
+            {
+                EditorGUI.PropertyField(cellPos, col.GetArrayElementAtIndex(xIndex), GUIContent.none);
+                cellPos.x += cellSize.x + margin;
+            }
+            cellPos.y += cellSize.y + margin;
+            //Spacing
+            GUILayout.Space(cellSize.y + margin);
+        }
     }
 
     SerializedProperty GetRowAt(int index)
