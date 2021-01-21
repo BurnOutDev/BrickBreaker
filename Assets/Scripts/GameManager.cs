@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     List<GameObject> balls = new List<GameObject>();
     List<GameObject> bricks = new List<GameObject>();
 
+    public int lives;
+
     void Awake()
     {
         instance = this;
@@ -17,6 +19,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CreateBall();
+        ResetGame();
+    }
+
+    void ResetGame()
+    {
+        lives = 3;
     }
 
     #region Ball
@@ -63,6 +71,31 @@ public class GameManager : MonoBehaviour
         if (bricks.Count == 0)
         {
             Debug.Log("You Won!");
+        }
+    }
+
+    #endregion
+
+    #region Lives
+
+    void RemoveLife()
+    {
+        lives--;
+
+        if (lives == 0)
+            Debug.Log("You Lost!");
+        else
+            CreateBall();
+    }
+
+    public void LostBall(GameObject ball)
+    {
+        balls.Remove(ball);
+        Destroy(ball);
+
+        if (balls.Count == 0)
+        {
+            RemoveLife();
         }
     }
 
