@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        livesText.text = $"Lives: {lives.ToString("D2")}";
+        livesText.text = $"♡ {lives.ToString("D2")}";
     }
 
     #endregion
