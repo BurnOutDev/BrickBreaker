@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     Rigidbody rb;
     public static float initialForce = 600f;
+    bool ballStarted = false;
 
     void Start()
     {
@@ -21,6 +22,20 @@ public class Ball : MonoBehaviour
         if (brick != null)
         {
             brick.TakeDamage();
+        }
+    }
+
+    public bool BallStarted() => ballStarted;
+
+    public void StartBall()
+    {
+        if (!ballStarted)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(new Vector3(initialForce, initialForce, 0));
+            ballStarted = true;
+
+            transform.SetParent(transform.parent.parent);
         }
     }
 }

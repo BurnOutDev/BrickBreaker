@@ -30,5 +30,21 @@ public class GameManager : MonoBehaviour
         balls.Add(newBall);
     }
 
+    public void StartBall()
+    {
+        balls[0].GetComponent<Ball>().StartBall();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && balls.Count > 0)
+        {
+            if (balls[0] != null && !balls[0].GetComponent<Ball>().BallStarted())
+            {
+                StartBall();
+            }
+        }
+    }
+
     #endregion
 }
