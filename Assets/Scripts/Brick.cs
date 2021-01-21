@@ -9,7 +9,7 @@ public class Brick : MonoBehaviour
     
     void Start()
     {
-        // Add to GameManager
+        GameManager.instance.AddBrick(this.gameObject);
     }
 
     public void TakeDamage()
@@ -18,8 +18,7 @@ public class Brick : MonoBehaviour
 
         if (health <= 0)
         {
-            // Crete Particles
-
+            GameManager.instance.RemoveBrick(gameObject);
             Destroy(gameObject);
         }
     }

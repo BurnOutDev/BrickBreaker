@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject ballPrefab;
     List<GameObject> balls = new List<GameObject>();
+    List<GameObject> bricks = new List<GameObject>();
 
     void Awake()
     {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
         CreateBall();
     }
 
-    #region Create Ball
+    #region Ball
 
     public void CreateBall()
     {
@@ -43,6 +44,25 @@ public class GameManager : MonoBehaviour
             {
                 StartBall();
             }
+        }
+    }
+
+    #endregion
+
+    #region Bricks 
+
+    public void AddBrick(GameObject brick)
+    {
+        bricks.Add(brick);
+    }
+
+    public void RemoveBrick(GameObject brick)
+    {
+        bricks.Remove(brick);
+
+        if (bricks.Count == 0)
+        {
+            Debug.Log("You Won!");
         }
     }
 
