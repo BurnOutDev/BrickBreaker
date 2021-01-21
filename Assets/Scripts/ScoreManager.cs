@@ -24,6 +24,6 @@ public class ScoreManager : MonoBehaviour
 
     void UpdateUI()
     {
-        scoreText.text = $"Score: {currentScore}";
+        scoreText.text = $"Score: {currentScore.ToString("D5")}";
     }
 }

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        livesText.text = $"Lives: {lives}";
+        livesText.text = $"Lives: {lives.ToString("D2")}";
     }
 
     #endregion
