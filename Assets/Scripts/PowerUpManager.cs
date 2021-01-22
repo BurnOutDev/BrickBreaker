@@ -21,7 +21,7 @@ public class PowerUpManager : MonoBehaviour
         if (rand <= dropChance)
         {
             int index = Random.Range(0, dropSet.Count);
-            Instantiate(dropSet[index], pos, Quaternion.identity);
+            Instantiate(dropSet[index], pos, Quaternion.Euler(0,0,90));
         }
     }
 }
