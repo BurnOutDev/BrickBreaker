@@ -113,4 +113,30 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Effects
+
+    public void Multiball()
+    {
+        if (balls.Count > 0)
+        {
+            Vector3 ballPos = balls[0].transform.position;
+
+            GameObject newBall = Instantiate(ballPrefab, ballPos, Quaternion.identity);
+            newBall.GetComponent<Rigidbody>().AddForce(Ball.initialForce, Ball.initialForce, 0);
+
+            balls.Add(newBall);
+        }
+    }
+
+    public void Extent()
+    {
+
+        if (balls.Count > 0)
+        {
+                
+        }
+    }
+
+    #endregion
 }

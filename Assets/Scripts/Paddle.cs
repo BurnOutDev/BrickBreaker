@@ -14,6 +14,9 @@ public class Paddle : MonoBehaviour
     Rigidbody rb;
     BoxCollider col;
 
+    bool isScaling = false;
+    bool isShrinkingToNormal = false;
+
     void Awake()
     {
         instance = this;
@@ -82,5 +85,45 @@ public class Paddle : MonoBehaviour
     {
         transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y, transform.position.z);
         Resize(newSize);
+    }
+
+    IEnumerator ResizePaddle(float goalSize, bool isShrinking)
+    {
+        if (isScaling)
+        {
+            yield break;
+        }
+
+        isScaling = true;
+
+        if (!isShrinking)
+        {
+
+        }
+        if (goalSize > col.size.x) //Increasing size
+        {
+            float currentSize = col.size.x - 1;
+
+            while(currentSize < goalSize)
+            {
+                currentSize += Time.deltaTime * 2;
+                Resize(currentSize);
+                yield return null;
+            }
+        }
+        else //Decreasing size
+        {
+            float currentSize = col.size.x - 1;
+
+            while (currentSize > goalSize)
+            {
+                currentSize += Time.deltaTime * 2;
+                Resize(currentSize);
+                yield return null;
+            }
+        }
+        Resize(goalSize);
+
+        isScaling = false;
     }
 }

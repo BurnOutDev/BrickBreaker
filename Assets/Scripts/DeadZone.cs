@@ -10,5 +10,10 @@ public class DeadZone : MonoBehaviour
         {
             GameManager.instance.LostBall(other.gameObject);
         }
+
+        if (other.CompareTag("PowerUp"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

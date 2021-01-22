@@ -156,7 +156,7 @@ MonoBehaviour:
   - {fileID: 164565353122756919, guid: 696fad4325be2214ab5f86b0cccd88e7, type: 3}
   - {fileID: 1395640337719978078, guid: 84bcab7a392de274c8bf24fb2efe873b, type: 3}
   - {fileID: 8555388968472530880, guid: 9a4c4b93a549b854f9c01d8a9002d87c, type: 3}
-  dropChance: 20
+  dropChance: 87
 --- !u!4 &155685331
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,7 +1695,7 @@ GameObject:
   - component: {fileID: 2028688394}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
