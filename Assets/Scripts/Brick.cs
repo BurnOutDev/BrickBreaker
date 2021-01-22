@@ -20,6 +20,10 @@ public class Brick : MonoBehaviour
         {
             GameManager.instance.RemoveBrick(gameObject);
             ScoreManager.instance.AddScore(score);
+
+            //Drop PowerUp
+            PowerUpManager.instance.DropPowerUp(transform.position);
+
             Destroy(gameObject);
         }
     }
